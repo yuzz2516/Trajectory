@@ -4,16 +4,11 @@ import cv2
 import matplotlib.pyplot as plt
 from PIL import Image
 
+from utils.parser import *
+
 
 def plot(text, image, plot):
-    # データの整形
-    f = pd.read_csv(text, sep=' ')
-    df = pd.DataFrame(f)
-    df.columns = ['frame', 'ID', 'x', 'y', 'w', 'h', 'n1', 'n2', 'n3', 'n4', 'n5']
-
-    df = df.drop(columns=["n1", "n2", "n3", "n4", "n5"])
-    #print(df)
-    sum_frame = len(df)
+    df = parser(text)
 
     fig = plt.figure(facecolor="w")
     ax = fig.add_subplot(1, 1, 1, aspect="equal")
