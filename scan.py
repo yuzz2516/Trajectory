@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import cv2
+
 from PIL import Image
 from utils.parser import *
 
@@ -36,5 +37,6 @@ def scan():
     plt.imshow(im, alpha=0.6)
     fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
     plt.savefig('scan.png')
+    
 if __name__ == '__main__':
     scan()
