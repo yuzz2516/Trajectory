@@ -7,8 +7,7 @@ def parser(text):
     df = df.drop(columns=["n1", "n2", "n3", "n4", "n5"])
     return df
 
-def centerize(text):
-    df = parser(text)
+def centerize(df):
     y_list = df.loc[:,'y'].values
     x_list = df.loc[:,'x'].values
     w_list = df.loc[:,'w'].values
