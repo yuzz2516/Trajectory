@@ -8,13 +8,12 @@ def parser(text):
     return df
 
 def centerize(df):
-    y_list = df.loc[:,'y'].values
-    x_list = df.loc[:,'x'].values
-    w_list = df.loc[:,'w'].values
-    h_list = df.loc[:,'h'].values
+    x_min = df['x']
+    y_min = df['y']
+    w = df['w']
+    h = df['h']
 
-    xc_list = x_list + w_list / 2
-    yt_list = y_list + h_list
-    #print(df)
-    return xc_list, yt_list
+    x_c = x_min + w / 2
+    y_t = y_min + h
+    return x_c, y_t
     

@@ -7,7 +7,7 @@ from PIL import Image
 from utils.parser import *
 
 
-def plot(text, image, plot):
+def plot(text, image, plot, output):
     df = parser(text)
 
     fig = plt.figure(facecolor="w")
@@ -28,8 +28,8 @@ def plot(text, image, plot):
             
         # プロットの仕方を指定
         if plot == "scatter" :
-            x_c = x_min + h / 2
-            y_c = y_min + w
+            x_c = x_min + w
+            y_c = y_min + h / 2
             color = (car_id - id_min) / (id_max - id_min)
             plt.scatter(x_c, y_c, c=frame, cmap='jet')
             
@@ -58,13 +58,14 @@ def plot(text, image, plot):
     im = Image.open(image)
     plt.imshow(im, alpha=0.6)
     fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
-    plt.savefig('track.png')
+    plt.savefig(output)
 
 def parse_opt(opt):
     parser = argparse.ArgumentParser()
     parser.add_argument('--text', type=str, default='texts/Jingubashi.txt', help='text file tracks with DeepSORT')
     parser.add_argument('--image', type=str, default='thumbnails/Jingubashi.png', help='background image of trajectory plot')
     parser.add_argument('--plot', type=str, default='scatter', help='set draw style')
+    parser.add_argument('--output', type=str, default='track.png', help='output image name')
     opt = parser.parse_args()
     return opt
 
