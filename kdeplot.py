@@ -14,5 +14,8 @@ def kde2d(image, xc_list, yt_list):
     plt.savefig('2Dkde.png')
 
 if __name__ == '__main__':
-    xc_list, yt_list = centerize('./texts/Jingubashi.txt')
-    kde2d('thumbnails/Jingubashi.png', xc_list, yt_list)
+    x_c, y_t = centerize(parser('./texts/kanetsu.txt'))
+    x_c = x_c.to_numpy()
+    y_t = y_t.to_numpy()
+    y_t = y_t.astype(int)
+    kde2d('thumbnails/kanetsu.png', x_c, y_t)

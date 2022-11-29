@@ -6,7 +6,6 @@ from PIL import Image
 
 from utils.parser import *
 
-
 def plot(text, image, plot, output):
     df = parser(text)
 
@@ -28,8 +27,8 @@ def plot(text, image, plot, output):
             
         # プロットの仕方を指定
         if plot == "scatter" :
-            x_c = x_min + w
-            y_c = y_min + h / 2
+            x_c = x_min + w / 2
+            y_c = y_min + h
             color = (car_id - id_min) / (id_max - id_min)
             plt.scatter(x_c, y_c, c=frame, cmap='jet')
             
