@@ -15,7 +15,4 @@ def kde2d(image, xc_list, yt_list):
 
 if __name__ == '__main__':
     x_c, y_t = centerize(parser('./texts/kanetsu.txt'))
-    x_c = x_c.to_numpy()
-    y_t = y_t.to_numpy()
-    y_t = y_t.astype(int)
     kde2d('thumbnails/kanetsu.png', x_c, y_t)

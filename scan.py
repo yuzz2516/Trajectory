@@ -22,8 +22,8 @@ def scan(text, image, output):
     # データ整形
     df = parser(text)
     x_c, y_t = centerize(df)
-    x_c, y_t = df2numpy(x_c, y_t)
-    print(min(x_c))
+    #x_c, y_t = xy_array(x_c, y_t)
+    #print(min(x_c))
     
     thresh = 30
     x_data = []
