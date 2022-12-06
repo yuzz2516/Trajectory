@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 def parser(text):   
     f = pd.read_csv(text, sep=' ')
@@ -15,11 +16,13 @@ def centerize(df):
 
     x_c = x_min + w / 2
     y_t = y_min + h
-    return x_c, y_t
 
-def df2numpy(x_c, y_t):
     x_c = x_c.to_numpy()
     y_t = y_t.to_numpy()
     y_t = y_t.astype(int)
     return x_c, y_t
+    
+def xy_array(x, y):
+    xy = np.stack([x, y], -1)
+    return xy
     
