@@ -3,42 +3,53 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import cv2
+import argparse
 
 from PIL import Image
 from utils.parser import *
 
-def scan():
+def scan(text, image, output):
+    # 描画
     sns.set()
     sns.set_style('whitegrid', {'grid.kinestyle': '--'})
     sns.set_palette('spring', 8, 0.5)
 
-    im = cv2.imread('thumbnails/nasunobashi.png')
+    im = cv2.imread(image)
     fig = plt.figure(facecolor="w")
     ax = fig.add_subplot(1, 1, 1, aspect="equal")
     h, w, c = im.shape
 
-    df = parser('./texts/nasunobashi.txt')
+    # データ整形
+    df = parser(text)
     x_c, y_t = centerize(df)
-    x_c = x_c.to_numpy()
-    y_t = y_t.to_numpy()
-    y_t = y_t.astype(int)
-    print(min(x_c))
-
-    b = []
+    #x_c, y_t = xy_array(x_c, y_t)
+    #print(min(x_c))
+    
+    thresh = 30
+    x_data = []
     for i in range(h):
         a = []
         for j in y_t:
-            if i-1 < y_t[j] <= i+1:
+            if i-thresh < y_t[j] <= i+thresh:
                 a.append(x_c[j])
         #print('{} contains {}'.format(i, a))
-        b.append(np.average(a))
+        x_data.append(np.average(a))
         
     y_data = [i for i in range(h)]
     
-    sns.lineplot(x=b, y=y_data)
+    sns.lineplot(x=x_data, y=y_data)
     plt.imshow(im, alpha=0.6)
     fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
-    plt.savefig('scan1.png')
+    plt.savefig(output)
+    
+def parse_opt(opt):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--text', type=str, default='texts/Jingubashi.txt', help='text file tracks with DeepSORT')
+    parser.add_argument('--image', type=str, default='thumbnails/Jingubashi.png', help='background image of trajectory plot')
+    parser.add_argument('--output', type=str, default='results/scan/Jingubashi_scan.png', help='output image name')
+    opt = parser.parse_args()
+    return opt
     
 if __name__ == '__main__':
-    scan()
+    opt = parse_opt(True)
+    scan(**vars(opt))
