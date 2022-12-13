@@ -3,8 +3,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 import argparse
-from utils.parser import *
 
+from utils.parser import *
 
 def cluster(text, image, choice):
     # preprocessing
@@ -13,7 +13,7 @@ def cluster(text, image, choice):
 
     # model choices
     if choice == 'DBSCAN':
-        db = DBSCAN(eps=8, min_samples=1).fit(X)
+        db = DBSCAN(eps=10, min_samples=10).fit(X)
         labels = db.labels_
 
     elif choice == 'kmeans':
