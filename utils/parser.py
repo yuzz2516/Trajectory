@@ -8,6 +8,13 @@ def parser(text):
     df = df.drop(columns=["n1", "n2", "n3", "n4", "n5"])
     return df
 
+def parser_byte(text):
+    f = pd.read_csv(text, sep=',')
+    df = pd.DataFrame(f)
+    df.columns = ['frame', 'ID', 'x', 'y', 'w', 'h', 'n1', 'n2', 'n3', 'n4']
+    df = df.drop(columns=["n1", "n2", "n3", "n4"])
+    return df
+
 def centerize(df):
     x_min = df['x']
     y_min = df['y']
@@ -25,4 +32,12 @@ def centerize(df):
 def xy_array(x, y):
     xy = np.stack([x, y], -1)
     return xy
+
+def ids(df):
+    frame = df['frame']
+    car_id = df['ID']
+
+    frame = frame.values
+
+    return frame, car_id
     
