@@ -32,4 +32,12 @@ def centerize(df):
 def xy_array(x, y):
     xy = np.stack([x, y], -1)
     return xy
+
+def ids(df):
+    frame = df['frame']
+    car_id = df['ID']
+
+    frame = frame.values
+
+    return frame, car_id
     

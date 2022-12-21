@@ -3,6 +3,7 @@ import pandas as pd
 import cv2
 import matplotlib.pyplot as plt
 from PIL import Image
+import seaborn as sns
 
 from utils.parser import *
 
@@ -59,6 +60,7 @@ def plot(text, image, plot, output, model,point_size):
     
     # 画像を書き出す
     im = Image.open(image)
+    sns.scatterplot(x=X[:,0], y=X[:,1], hue=["cluster-{}".format(x) for x in labels])
     plt.imshow(im, alpha=0.6)
     fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
     plt.savefig(output)
