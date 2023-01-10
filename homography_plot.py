@@ -8,6 +8,7 @@ import seaborn as sns
 from utils.parser import *
 from utils.homography import *
 
+"""
 def plot(text, image, plot, output, model,point_size):
     if model == "deepsort":
         df = parser(text)
@@ -65,6 +66,7 @@ def plot(text, image, plot, output, model,point_size):
     plt.imshow(im, alpha=0.6)
     fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
     plt.savefig(output)
+"""
 
 def homo_plot(text,model,p_original,p_trans,):
     if model == "deepsort":
