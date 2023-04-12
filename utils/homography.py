@@ -4,7 +4,20 @@ import cv2
 
 from utils.parser import *
 
-def homography_trans(p_original,p_trans):
+def homography_trans(
+        p_original:list,
+        p_trans:list
+    )->np.ndarray:
+    """_summary_
+
+    Args:
+        p_original (list): _description_
+        p_trans (list): _description_
+
+    Returns:
+        np.ndarray: _description_
+    """
+
     # 変換前後の対応点を設定
     p_original = np.float32(p_original)
     p_trans = np.float32(p_trans)

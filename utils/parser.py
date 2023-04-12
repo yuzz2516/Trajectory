@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def parser(text):   
+def parser(text):
     f = pd.read_csv(text, sep=' ')
     df = pd.DataFrame(f)
     df.columns = ['frame', 'ID', 'x', 'y', 'w', 'h', 'n1', 'n2', 'n3', 'n4', 'n5']
@@ -13,6 +13,13 @@ def parser_byte(text):
     df = pd.DataFrame(f)
     df.columns = ['frame', 'ID', 'x', 'y', 'w', 'h', 'n1', 'n2', 'n3', 'n4']
     df = df.drop(columns=["n1", "n2", "n3", "n4"])
+    return df
+
+def parser_class(text):
+    f = pd.read_csv(text, sep=' ')
+    df = pd.DataFrame(f)
+    df.columns = ['frame','ID', 'x', 'y', 'w', 'h','class_id', 'n2', 'n3','n4', 'n5']
+    df = df.drop(columns=["n2", "n3",'n4', 'n5'])
     return df
 
 def centerize(df):
